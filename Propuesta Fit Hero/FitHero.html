@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fit Hero | Brochure Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* --- FUENTES CORPORATIVAS --- */
+        @font-face {
+            font-family: 'Brandish';
+            src: url('Brand_.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Futura Condensed';
+            src: url('Futura-Condensed-Bold_0.ttf') format('truetype');
+            font-weight: bold;
+        }
+
+        /* --- VARIABLES DE MARCA --- */
+        :root {
+            --brand-orange: #ff4d00; /* Ajustado al naranja rojizo del logo */
+            --brand-dark: #050505;
+            --brand-gray: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--brand-dark);
+            color: white;
+            font-family: 'Helvetica Neue', sans-serif; /* Fallback limpio */
+            overflow-x: hidden;
+        }
+
+        /* --- TIPOGRAFÍA --- */
+        h1, h2, h3, .title-font {
+            font-family: 'Futura Condensed', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .brand-font {
+            font-family: 'Brandish', cursive;
+        }
+
+        /* --- UTILIDADES VISUALES --- */
+        .text-orange { color: var(--brand-orange); }
+        .bg-orange { background-color: var(--brand-orange); }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ff8c00, #ff4d00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* Efecto Parallax en Imágenes */
+        .parallax-container {
+            height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Máscara para recortar imágenes suavemente */
+        .fade-bottom {
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        .slide-in-left { animation: slideIn 1s ease-out; }
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        /* Ajuste específico para el logo */
+        .logo-glow {
+            filter: drop-shadow(0 0 15px rgba(255, 77, 0, 0.3));
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- PORTADA: IMPACTO VISUAL -->
+    <section class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+        <!-- Fondo con Render del Stand -->
+        <div class="absolute inset-0 z-0">
+            <img src="Stand-render-Fit.jpg" class="w-full h-full object-cover opacity-40 filter contrast-125" alt="Stand Background">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
+            <img src="logo-fondo-negro.png" alt="Estado Digital" class="h-16 md:h-24 mx-auto mb-8 logo-glow animate-float">
+            
+            <h1 class="text-7xl md:text-[10rem] leading-none font-bold text-white drop-shadow-2xl">
+                FIT <span class="gradient-text">HERO</span>
+            </h1>
+            
+            <div class="mt-6 flex flex-col items-center">
+                <div class="h-1 w-24 bg-orange-600 mb-6"></div>
+                <p class="text-2xl md:text-4xl font-light tracking-widest text-gray-300 uppercase">
+                    Experiencia BTL Inmersiva
+                </p>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto text-sm md:text-base font-sans">
+                    Una producción interactiva donde tus clientes son los protagonistas de un videojuego en la vida real.
+                </p>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- INTRODUCCIÓN: EL HOST VIRTUAL -->
+    <section class="py-24 bg-black relative">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Personaje 3D (Host) -->
+            <div class="relative order-2 md:order-1">
+                <div class="absolute -inset-10 bg-orange-600/20 blur-[100px] rounded-full"></div>
+                <img src="host2.png" alt="Host Virtual" class="relative z-10 w-full max-w-md mx-auto drop-shadow-2xl animate-float">
+            </div>
+
+            <!-- Texto Narrativo -->
+            <div class="order-1 md:order-2 slide-in-left">
+                <h2 class="text-5xl md:text-6xl text-white mb-6 leading-tight">
+                    NO ES UN JUEGO.<br>
+                    ES <span class="text-orange-500">TU MARCA</span><br>EN ACCIÓN.
+                </h2>
+                <div class="space-y-6 text-lg text-gray-300 font-sans font-light">
+                    <p>
+                        Hola, bienvenido al futuro del BTL. En un mundo saturado de publicidad estática, 
+                        <strong class="text-white">Estado Digital</strong> trae una solución que rompe la cuarta pared.
+                    </p>
+                    <p>
+                        Imagina transformar tu stand en un set de producción virtual donde cada visitante se convierte en un atleta de élite dentro de un universo diseñado con tu identidad corporativa.
+                    </p>
+                    <div class="flex gap-4 pt-4">
+                        <div class="px-6 py-3 border border-orange-500 rounded-full text-orange-500 font-bold text-sm tracking-wider">CROMA KEY</div>
+                        <div class="px-6 py-3 border border-gray-700 rounded-full text-gray-400 font-bold text-sm tracking-wider">DATA DRIVEN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECNOLOGÍA: VIRTUAL PRODUCTION -->
+    <section class="relative py-32 overflow-hidden">
+        <!-- Fondo Visual -->
+        <div class="absolute inset-0 z-0">
+            <img src="virtual production.png" class="w-full h-full object-cover opacity-30" alt="Virtual Production">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4">
+            <div class="max-w-2xl">
+                <h2 class="text-6xl text-white mb-8 border-l-8 border-orange-600 pl-6">
+                    INMERSIÓN<br>TOTAL
+                </h2>
+                
+                <div class="glass-panel p-8 rounded-2xl mb-8">
+                    <h3 class="text-2xl text-orange-500 mb-4 font-bold">TECNOLOGÍA DE CINE</h3>
+                    <p class="text-gray-300 mb-4">
+                        Utilizamos la misma técnica que las grandes producciones de Hollywood: <strong>Green Screen (Croma)</strong>.
+                    </p>
+                    <p class="text-gray-300">
+                        El participante se para frente a una cámara, pero en la pantalla gigante y en su "Selfie Final", está dentro de un estadio, una fábrica futurista o un paisaje surrealista hecho con tus productos.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-900/80 p-6 rounded-xl border border-gray-800">
+                        <div class="text-4xl mb-2">🎥</div>
+                        <div class="font-bold text-white">CALIDAD BROADCAST</div>
+                        <div class="text-xs text-gray-500">Cámaras 4K e iluminación de estudio.</div>
+                    </div>
+                    <div class="bg-gray-900/80 p-6 rounded-xl border border-gray-800">
+                        <div class="text-4xl mb-2">⚡</div>
+                        <div class="font-bold text-white">TIEMPO REAL</div>
+                        <div class="text-xs text-gray-500">Renderizado instantáneo sin esperas.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTROL ROOM: EXCLUSIVIDAD B2B -->
+    <section class="py-24 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-7xl text-white mb-4">EXPERIENCIA CONTROLADA</h2>
+                <p class="text-xl text-gray-400 font-light">Una activación premium que solo pueden vivir contigo.</p>
+            </div>
+
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-800 group">
+                <img src="Stand-render-Fit.jpg" alt="Control Room" class="w-full h-[600px] object-cover transition duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-10 md:p-20">
+                    <div class="max-w-3xl">
+                        <h3 class="text-4xl font-bold text-white mb-4">NO ES UNA APP CASERA</h3>
+                        <p class="text-lg text-gray-200 mb-6">
+                            Fit Hero es una instalación física exclusiva. Genera el efecto <strong>"Solo Aquí"</strong>, obligando al público a visitar tu stand o punto de venta para desbloquear la experiencia.
+                        </p>
+                        <ul class="flex flex-wrap gap-4">
+                            <li class="bg-orange-600 text-white px-4 py-2 rounded font-bold text-sm">TRÁFICO PRESENCIAL</li>
+                            <li class="bg-gray-800 text-white px-4 py-2 rounded font-bold text-sm border border-gray-600">SIN CONTROLES FÍSICOS</li>
+                            <li class="bg-gray-800 text-white px-4 py-2 rounded font-bold text-sm border border-gray-600">CERO FRICCIÓN</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DATA E INTELIGENCIA -->
+    <section class="py-24 bg-black relative overflow-hidden">
+        <!-- Decoración de fondo -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gray-900 to-transparent opacity-50"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <!-- Imagen IA -->
+            <div class="relative">
+                <img src="IA.png" alt="Inteligencia Artificial" class="rounded-2xl shadow-2xl border border-gray-800 w-full animate-float">
+                <!-- Data overlay mockups -->
+                <div class="absolute -right-4 top-10 bg-black/90 p-4 rounded-lg border-l-4 border-orange-500 shadow-xl hidden md:block">
+                    <div class="text-xs text-gray-400 uppercase">Lead Capturado</div>
+                    <div class="text-white font-bold">juan.perez@email.com</div>
+                    <div class="text-green-500 text-xs">Nivel Fitness: Alto</div>
+                </div>
+            </div>
+            
+            <!-- Contenido Data -->
+            <div>
+                <h2 class="text-5xl md:text-6xl text-white mb-8">
+                    DIVERSIÓN PARA ELLOS.<br>
+                    <span class="text-orange-500">DATA PARA TI.</span>
+                </h2>
+                <p class="text-gray-400 text-lg mb-8 font-sans">
+                    Convertimos el sudor en métricas. Para jugar y recibir su foto épica, el usuario se registra voluntariamente.
+                </p>
+
+                <div class="space-y-6">
+                    <!-- Item 1 -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-2xl border border-gray-700">📊</div>
+                        <div>
+                            <h4 class="text-xl text-white font-bold">BASE DE DATOS CUALIFICADA</h4>
+                            <p class="text-sm text-gray-500">Nombre, Email, Teléfono y Edad depurados.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-2xl border border-gray-700">📸</div>
+                        <div>
+                            <h4 class="text-xl text-white font-bold">CONTENIDO UGC VIRAL</h4>
+                            <p class="text-sm text-gray-500">Fotos profesionales con tu marca que los usuarios comparten en RRSS.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfico ROI -->
+                <div class="mt-10 bg-gray-900 p-6 rounded-xl border border-gray-800">
+                    <h4 class="text-sm text-gray-400 uppercase mb-4 tracking-widest">Tiempo de Retención de Marca (Minutos)</h4>
+                    <div style="height: 200px;">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CIERRE DE NEGOCIOS -->
+    <section class="py-24 bg-gradient-to-r from-gray-900 to-black relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="glass-panel rounded-3xl p-10 md:p-16 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+                
+                <!-- Imagen Podcast / Business -->
+                <div class="w-full md:w-1/2 relative z-10">
+                    <img src="Host.png" alt="Hablemos de Negocios" class="rounded-xl shadow-2xl border border-gray-700 w-full">
+                </div>
+
+                <!-- CTA -->
+                <div class="w-full md:w-1/2 text-left relative z-10">
+                    <h2 class="text-4xl md:text-5xl text-white mb-6">¿LISTO PARA REVOLUCIONAR TU ACTIVACIÓN?</h2>
+                    <p class="text-gray-300 mb-8 font-sans">
+                        Deja de entregar folletos que nadie lee. Crea una experiencia que parezca sacada del futuro y que tus clientes no podrán olvidar.
+                    </p>
+                    
+                    <button class="group relative px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-bold text-lg rounded-full overflow-hidden transition-all duration-300 shadow-lg shadow-orange-600/30">
+                        <span class="relative z-10 flex items-center gap-2">
+                            SOLICITAR DEMO
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Decorative Logo BG -->
+                <img src="logo-fondo-negro2.png" class="absolute -right-20 -bottom-20 w-96 opacity-10 rotate-12 z-0 pointer-events-none" alt="Deco">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-12 border-t border-gray-900 text-center">
+        <img src="logo-EstadoDigital.png" alt="Estado Digital" class="h-10 mx-auto mb-4 opacity-80">
+        <p class="text-gray-600 text-sm font-sans">Producción Audiovisual & Experiencias Interactivas</p>
+        <p class="text-gray-700 text-xs mt-2">© 2024 Estado Digital. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- CHART SCRIPT -->
+    <script>
+        const ctx = document.getElementById('roiChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Fit Hero', 'VR', 'Tradicional'],
+                datasets: [{
+                    label: 'Minutos',
+                    data: [12, 5, 2],
+                    backgroundColor: ['#ff4d00', '#333', '#333'],
+                    borderRadius: 4,
+                    barThickness: 40
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { display: false, grid: { display: false } },
+                    x: { 
+                        grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { family: 'Arial' } }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
